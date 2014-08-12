@@ -10,7 +10,7 @@
   :ragtime
   {:migrations ragtime.sql.files/migrations,
    :database
-   "jdbc:postgresql://localhost/shakespeare_survey?user=db_user_name_here&password=db_user_password_here"}
+   "jdbc:postgresql://localhost/shakespeare_survey"}
   :cljsbuild
   {:builds
    [{:source-paths ["src-cljs"],

@@ -5,20 +5,20 @@
 
 (defdb db schema/db-spec)
 
-(defentity users)
+(defentity surveys)
 
-(defn create-user [user]
-  (insert users
-          (values user)))
+(defn create-survey [survey]
+  (insert surveys
+          (values survey)))
 
-(defn update-user [id first-name last-name email]
-  (update users
+(defn update-survey [id first-name last-name email]
+  (update surveys
   (set-fields {:first_name first-name
                :last_name last-name
                :email email})
   (where {:id id})))
 
-(defn get-user [id]
-  (first (select users
+(defn get-survey [id]
+  (first (select surveys
                  (where {:id id})
                  (limit 1))))
