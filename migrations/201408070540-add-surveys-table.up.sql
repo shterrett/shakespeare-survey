@@ -1,5 +1,6 @@
 CREATE TABLE surveys
-(id VARCHAR(20) PRIMARY KEY,
+(id SERIAL PRIMARY KEY,
+  year INTEGER,
   live_theater_frequency INTEGER,
   live_shakespeare_perfs INTEGER
  );

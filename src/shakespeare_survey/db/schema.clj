@@ -3,5 +3,5 @@
 (def db-spec
   {:subprotocol "postgresql"
    :subname "//localhost/shakespeare_survey"
-   :user ""
+   :user "stuart"
    :password ""})

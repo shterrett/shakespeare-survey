@@ -1,9 +1,8 @@
 (ns shakespeare-survey.routes.home
-  (:require [shakespeare-survey.db.core :as db]
-            [shakespeare-survey.layout :as layout]
+  (:require [shakespeare-survey.layout :as layout]
             [shakespeare-survey.util :as util]
             [compojure.core :refer :all]
-            [noir.response :refer [edn]]
+            [noir.response :refer [edn redirect]]
             [clojure.pprint :refer [pprint]]))
 
 (defn home-page []
@@ -11,10 +10,6 @@
 
 (defn about-page []
   (layout/render "about.html"))
-
-(defn save-document [doc]
-  (pprint doc)
-  {:status "ok"})
 
 (defroutes home-routes
   (GET "/" [] (home-page))

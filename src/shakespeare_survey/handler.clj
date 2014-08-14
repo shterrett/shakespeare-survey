@@ -1,6 +1,7 @@
 (ns shakespeare-survey.handler
   (:require [compojure.core :refer [defroutes]]
             [shakespeare-survey.routes.home :refer [home-routes]]
+            [shakespeare-survey.routes.surveys :refer [surveys-routes]]
             [shakespeare-survey.middleware :refer [load-middleware]]
             [shakespeare-survey.session-manager :as session-manager]
             [noir.response :refer [redirect]]
@@ -49,7 +50,9 @@
 
 (def app (app-handler
            ;; add your application routes here
-           [home-routes app-routes]
+           [surveys-routes
+            home-routes
+            app-routes]
            ;; add custom middleware here
            :middleware (load-middleware)
            ;; timeout sessions after 30 minutes
