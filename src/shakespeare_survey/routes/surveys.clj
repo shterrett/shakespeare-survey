@@ -1,15 +1,16 @@
 (ns shakespeare-survey.routes.surveys
   (:require [shakespeare-survey.db.core :as db]
+            [shakespeare-survey.func.surveys :as surveys]
             [shakespeare-survey.layout :as layout]
+            [shakespeare-survey.routes.builder :as builder]
             [shakespeare-survey.util :as util]
             [compojure.core :refer :all]
             [noir.response :refer [edn redirect]]
             [clojure.pprint :refer [pprint]]))
 
 (defn surveys-create []
-  (let [id (:id (db/create-survey {:year 2014}))]
-    (redirect (clojure.string/join "/"
-                                   ["/surveys" id "edit"]))))
+  (let [id (:id (db/create-survey (surveys/build-initial-survey)))]
+    (redirect (builder/build-path ["surveys" id "edit"]))))
 
 (defn surveys-edit [id]
   (layout/render "surveys/edit.html"

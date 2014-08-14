@@ -53,7 +53,8 @@
   :jvm-opts
   ["-server"]
   :dependencies
-  [[cljs-ajax "0.2.6"]
+  [[clj-time "0.8.0"]
+   [cljs-ajax "0.2.6"]
    [selmer "0.6.9"]
    [log4j
     "1.2.17"
