@@ -1,4 +1,21 @@
 {% extends "templates/base.html" %}
 {% block content %}
-  <p>Survey id: {{survey.id}}</p>
+<header>
+  <h1>Shakespeare In The Park</h1>
+  <h2>Audience Survey</h2>
+</header>
+<form action="/surveys/{{survey.id}}" method="POST">
+  <input type="hidden" name="_method" value="PUT" />
+  <label name="live-theater-frequency">
+    How often do you see live theater performances?
+    <input name="live_theater_frequency" type="range" min="0" max="4" />
+  </label>
+  <label>
+    How many live Shakespeare performances have you seen?
+    <input name ="live_shakespeare_perfs" type="range" min="0" max="4" />
+  </label>
+  <div>
+    <input type="submit" value="Submit" />
+  </div>
+</form>
 {% endblock %}

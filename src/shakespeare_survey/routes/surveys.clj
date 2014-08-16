@@ -14,8 +14,14 @@
 
 (defn surveys-edit [id]
   (layout/render "surveys/edit.html"
-                 { :survey (db/get-survey (read-string id)) }))
+                 { :survey (db/get-survey id) }))
+
+(defn surveys-update [id params]
+  (surveys/update-survey id params)
+  (layout/render "surveys/complete.html"
+                 { :params params }))
 
 (defroutes surveys-routes
   (POST "/surveys" [] (surveys-create))
-  (GET "/surveys/:id/edit" [id] (surveys-edit id)))
+  (GET "/surveys/:id/edit" [id] (surveys-edit id))
+  (PUT "/surveys/:id" [id & params] (surveys-update id params)))
