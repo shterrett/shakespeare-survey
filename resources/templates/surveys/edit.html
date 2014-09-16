@@ -6,13 +6,166 @@
 </header>
 <form action="/surveys/{{survey.id}}" method="POST">
   <input type="hidden" name="_method" value="PUT" />
-  <label name="live-theater-frequency">
+  <label name="live_theater_frequency">
     How often do you see live theater performances?
-    <input name="live_theater_frequency" type="range" min="0" max="4" />
+    <input name="live_theater_frequency" type="range"
+     min="0" max="4" value="{{survey.live_theater_frequency}}" />
   </label>
-  <label>
+  <label name="live-shakespeare-perfs">
     How many live Shakespeare performances have you seen?
-    <input name ="live_shakespeare_perfs" type="range" min="0" max="4" />
+    <input name ="live_shakespeare_perfs" type="range"
+     min="0" max="4" value="{{survey.live_shakespeare_perfs}}" />
+  </label>
+  <label name="other_arts_orgs">
+    Do you regularly attend any Boston-based arts/theater organizations?
+    <label>
+      Yes
+      <input name="other_arts_orgs" type="radio"
+      value="true">
+    </label>
+    <label>
+      No
+      <input name="other_arts_orgs" type="radio"
+      value="false">
+    </label>
+  </label>
+  <label name="marketing_avenue">
+    How did you hear about tonight's performance?
+    <small>Please check all that apply</small>
+    {% for option in options.marketing-avenue %}
+      <label>
+        {{option}}
+        <input name="marketing_avenue" type="checkbox" value="{{option}}">
+       </label>
+    {% endfor %}
+    <label>
+      Other
+      <input name="marketing_avenue" type="text">
+    </label>
+  </label>
+  <label name="arts_websites">
+    If any, which websites and/or publications do you use for
+    arts and entertainment information?
+    <input name="arts_websites" type="text" value="{{survey.arts_websites}}" />
+  </label>
+  <label name="attend_if_not_free">
+    Would you have the opportunity to attend tonight's performance
+    if it were not offered free of charge?
+    <label name="attend_if_not_free">
+      Yes
+      <input name="attend_if_not_free" type="radio"
+      value="true">
+    </label>
+    <label name="attend_if_not_free">
+      No
+      <input name="attend_if_not_free" type="radio"
+      value="false">
+    </label>
+  </label>
+  <label name="attend_if_not_free">
+    Have you attended CSC's Free Shakespeare on the Common
+    in previous years?
+    <label name="attended_previously">
+      Yes
+      <input name="attended_previously" type="radio"
+      value="true">
+    </label>
+    <label name="attended_previously">
+      No
+      <input name="attended_previously" type="radio"
+      value="false">
+    </label>
+    <label name="years_attended_previously">
+      If yes, how many years have you been in attendance?
+      <input name="years_attended_previously" type="text"
+      value="{{survey.years_attended_previously}}">
+    </label>
+  </label>
+  <label name="greenshow">
+    Did you watch The Greenshow before tonight's performance?
+    <label name="greenshow">
+      Yes
+      <input name="greenshow" type="radio"
+      value="true">
+    </label>
+    <label name="greenshow">
+      No
+      <input name="greenshow" type="radio"
+      value="false">
+    </label>
+  </label>
+  <label name="other_csc_events">
+    Which other CSC events, if any, have you attended
+    besides Shakespeare on the Common?
+    <textarea name="other_csc_events" value="{{survey.other_csc_events}}">
+    </textarea>
+  </label>
+  <label name="transportation">
+    How did you arrive at the Common this evening?
+    <select name="transportation" value="{{survey.transportation}}">
+      {% for option in options.transportation %}
+        <option value="{{option}}">{{option}}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label name="age_group">
+    Please select your age range:
+    <select name="age_group" value="{{survey.age_group}}">
+      {% for group in options.age-group %}
+        <option value="{{group.id}}">{{group.range}}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label name="gender">
+    What is your gender?
+    <select name="gender" value="{{survey.gender}}">
+      {% for option in options.gender %}
+        <option value="{{option}}">{{option}}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label name="children">
+    Do you have children under the age of 18 living at home?
+    <select name="children" value="{{survey.children}}">
+      {% for option in options.children %}
+        <option value="{{option.value}}">{{option.display}}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label name="attendees">
+    How many people, including yourself, came with you tonight?
+    <input name="attendees" value="{{survey.attendees}}"
+    type="number">
+  </label>
+  <label name="income">
+    What is your total annual household income?
+    <input name="income" value="{{survey.income}}"
+    type="range" min="25000" max="150000" step="25000">
+  </label>
+  <label name="ethnicity">
+    CSC is committed to reflecting the diversity of Boston
+    in its staff, cast, and audience. With this in mind, we request
+    you select which of these best describes you.
+    <select name="ethnicity" value="{{survey.ethnicity}}">
+      {% for option in options.ethnicity %}
+        <option value="{{option.value}}">{{option.display}}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label name="residental_zipcode">
+    What is the zipcode of your residence?
+    <input name="residental_zipcode" value="{{survey.residental_zipcode}}"
+    type="number">
+  </label>
+  <label name="work_zipcode">
+    What is the zipcode of your work location?
+    <input name="work_zipcode" value="{{survey.work_zipcode}}"
+    type="number">
+  </label>
+  <label name="additional_comments">
+    Additional Comments: 
+    <textarea name="additional_comments">
+    </textarea>
   </label>
   <div>
     <input type="submit" value="Submit" />

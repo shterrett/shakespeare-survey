@@ -3,3 +3,6 @@
 
 (defn build-path [components]
   (str/join "/" (cons "" components)))
+
+(defn allowed-params [allowed-keys params]
+  (select-keys params allowed-keys))

@@ -14,12 +14,13 @@
 
 (defn surveys-edit [id]
   (layout/render "surveys/edit.html"
-                 { :survey (db/get-survey id) }))
+                 { :survey (db/get-survey id)
+                   :options surveys/survey-data-options }))
 
 (defn surveys-update [id params]
   (surveys/update-survey id params)
   (layout/render "surveys/complete.html"
-                 { :params params }))
+                 { :survey (db/get-survey id) }))
 
 (defroutes surveys-routes
   (POST "/surveys" [] (surveys-create))
